@@ -10,17 +10,27 @@ function App() {
     bad: 0,
   });
   const updateFeedback = (feedbackType) => {
-    switch (feedbackType) {
-      case "good":
-        console.log("good");
+    console.log(feedbackType.target.outerText);
+
+    switch (feedbackType.target.outerText) {
+      case "Good":
+        setStats({
+          ...stats,
+          good: stats.good + 1,
+        });
+        break;
+      case "Neutral":
+        setStats({
+          ...stats,
+          neutral: stats.neutral + 1,
+        });
 
         break;
-      case "neutral":
-        console.log("neutral");
-
-        break;
-      case "bad":
-        console.log("bad");
+      case "Bad":
+        setStats({
+          ...stats,
+          bad: stats.bad + 1,
+        });
 
         break;
       default:
@@ -30,7 +40,7 @@ function App() {
   return (
     <>
       <Description />
-      <Options values={stats} />
+      <Options updateFeedback={updateFeedback} />
       <Feedback values={stats} />
     </>
   );
