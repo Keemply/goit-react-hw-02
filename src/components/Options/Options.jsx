@@ -1,9 +1,13 @@
-function Options({ updateFeedback }) {
+function Options({ updateFeedback, totalFeedback }) {
+  function handleClick(event) {
+    updateFeedback(event.target.innerHTML.toLowerCase());
+  }
   return (
     <div>
-      <button onClick={updateFeedback}>Good</button>
-      <button onClick={updateFeedback}>Neutral</button>
-      <button onClick={updateFeedback}>Bad</button>
+      <button onClick={handleClick}>Good</button>
+      <button onClick={handleClick}>Neutral</button>
+      <button onClick={handleClick}>Bad</button>
+      {totalFeedback > 0 && <button onClick={handleClick}>Reset</button>}
     </div>
   );
 }
